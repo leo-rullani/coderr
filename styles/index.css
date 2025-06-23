@@ -9,6 +9,10 @@ main{
     gap: 16px;
 }
 
+#base_info_offer_count {
+    text-decoration: underline
+}
+
 .profile_stats>div {
     display: flex;
     align-items: center;

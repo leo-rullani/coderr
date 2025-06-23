@@ -12,11 +12,11 @@ function getOfferTemplateList(offers){
     return offerList;
 }
 
-function getEmptyOfferListTemplate(){
+function getEmptyOfferListTemplate(text = "Wir konnten keine Dienstleistungen finden, die deiner Suche entsprechen"){
     return `
         <div class=" d_flex_cc_gl f_d_c w_full">
             <img class="nothing_found_img" src="./assets/img/nothing_found.png" alt="Nothing found image">
-            <h3 class="font_prime_color">Wir konnten keine Dienstleistungen finden, die deiner Suche entsprechen</h3>
+            <h3 class="font_prime_color">${text}</h3>
         </div>`
 }
 

@@ -7,7 +7,18 @@ function redirectToOffer(id){
 }
 
 function redirectToOfferList(search){
-    window.location.href = "./offer_list.html?search=" + search;
+    if (currentUser == null) {
+        showToastHint( ["Loggen Sie sich bitte ein, um Details zu sehen."])
+    }
+    else {
+        if (!search || search.trim().length === 0 ) {
+            window.location.href = "./offer_list.html?search=";
+        }
+        else {
+            window.location.href = "./offer_list.html?search=" + search;
+        }
+    }
+
 }
 
 function redirectToOwnProfile(){

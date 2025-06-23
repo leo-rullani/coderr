@@ -46,6 +46,7 @@ main {
     display: none !important;
 }
 
+
 .pad_s {
     padding: 8px 16px;
 }
@@ -201,6 +202,10 @@ main {
 @media screen and (max-width: 480px) {
     .p_top_s {
         padding-top: 36px;
+    }
+
+    .d_flex_cs_gl {
+        flex-direction: column ;
     }
 
 }

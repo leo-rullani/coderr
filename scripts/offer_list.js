@@ -52,18 +52,73 @@ async function offerListInit() {
 }
 
 /**
- * Renders the offer list.
+ * Renders the offer list based on the current user's type.
+ * Displays different views for business and customer users.
  * @function renderOfferList
  */
 function renderOfferList() {
-  let listRef = document.getElementById("offer_list_content");
-  listRef.innerHTML =
-    getOfferTemplateList(currentOffers) +
-    getOfferPagination(
-      calculateNumPages(allOffersLength, PAGE_SIZE),
-      currentOfferListFilter.page
-    );
+  const listRef = document.getElementById("offer_list_content");
+
+  if (!currentUser || !currentUser.type) {
+    renderNotLoggedIn(listRef);
+    return;
+  }
+  switch (currentUser.type) {
+    case "business":
+      renderBusinessOffers(listRef);
+      break;
+
+    case "customer":
+      renderCustomerOffers(listRef);
+      break;
+  }
 }
+
+/**
+ * Displays a message indicating the user is not logged in.
+ * @function renderNotLoggedIn
+ * @param {HTMLElement} listRef - The DOM element where the message will be inserted.
+ */
+function renderNotLoggedIn(listRef) {
+  listRef.innerHTML = getEmptyOfferListTemplate("Du bist nicht eingeloggt.");
+}
+
+/**
+ * Renders offers that belong to the current business user.
+ * If no offers belong to the user, a message is shown instead.
+ * @function renderBusinessOffers
+ * @param {HTMLElement} listRef - The DOM element where the message will be inserted.
+ */
+function renderBusinessOffers(listRef) {
+  const ownOffers = currentOffers.filter(
+      offer => offer.user === currentUser.user
+  );
+
+  if (ownOffers.length > 0) {
+    listRef.innerHTML = getOfferTemplateList(ownOffers) +
+        getOfferPagination(
+            calculateNumPages(allOffersLength, PAGE_SIZE),
+            currentOfferListFilter.page
+        );
+  } else {
+    listRef.innerHTML = getEmptyOfferListTemplate();
+  }
+}
+
+/**
+ * Renders all available offers for a customer user.
+ * Includes pagination controls.
+ * @function renderCustomerOffers
+ * @param {HTMLElement} listRef - The DOM element where the message will be inserted.
+ */
+function renderCustomerOffers(listRef) {
+  listRef.innerHTML = getOfferTemplateList(currentOffers) +
+      getOfferPagination(
+          calculateNumPages(allOffersLength, PAGE_SIZE),
+          currentOfferListFilter.page
+      );
+}
+
 
 /**
  * Navigates to the specified offer page and updates the offer list filter.

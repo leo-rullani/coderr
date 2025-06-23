@@ -1,6 +1,14 @@
 # Changelog
 
 Alle bemerkenswerten Änderungen an diesem Projekt werden in diesem Dokument dokumentiert.
+## [1.2.2] - 2025-6-23
+### Geändert
+- **Verbessert:** Auf der Index-Seite funktioniert nun die Weiterleitung zu den Aufträgen (Business-User sehen nur Ihre Angebote)
+- **Verbessert:** CSS Bugfixing
+
+
+
+
 
 ## [1.2.1] - 2025-2-03
 ### Geändert
